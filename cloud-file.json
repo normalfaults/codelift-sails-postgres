@@ -1,0 +1,57 @@
+{
+  "services": [
+    {
+      "name": "db",
+      "image": "postgres",
+      "target_num_containers": 1,
+      "sequential_deployment": true,
+      "container_ports": [
+        {
+          "protocol": "tcp",
+          "inner_port": 5432,
+          "published": true
+        }
+      ],
+      "container_envvars": [
+        {
+          "key": "POSTGRES_PASSWORD",
+          "value": "PYOenY_0v8H_P-2L7NR0rQ"
+        }
+      ]
+    },
+    {
+      "name": "app",
+      "linked_to_service": [
+        {
+          "name": "db",
+          "to_service": "db"
+        }
+      ],
+      "container_envvars": [
+        {
+          "key": "POSTGRES_PASSWORD",
+          "value": "PYOenY_0v8H_P-2L7NR0rQ"
+        },
+        {
+          "key": "NODE_ENV",
+          "value": "production"
+        }
+      ],
+      "image": "",
+      "container_ports": [
+        {
+          "protocol": "tcp",
+          "inner_port": 1337,
+          "published": true,
+          "outer_port": 6196
+        }
+      ],
+      "run_command": "node app.js --prod",
+      "target_num_containers": 1,
+      "sequential_deployment": true,
+      "autorestart": "ALWAYS",
+      "autoredeploy": true
+    }
+  ],
+  "name": "normalfaultscodelift-sails-postgres"
+}

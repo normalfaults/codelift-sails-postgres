@@ -1,0 +1,51 @@
+{
+  "container_definitions": [
+    {
+      "name": "app",
+      "links": [
+        "db"
+      ],
+      "environment": [
+        {
+          "name": "POSTGRES_PASSWORD",
+          "value": "PYOenY_0v8H_P-2L7NR0rQ"
+        },
+        {
+          "name": "NODE_ENV",
+          "value": "production"
+        }
+      ],
+      "image": "",
+      "port_mappings": [
+        {
+          "protocol": "tcp",
+          "container_port": 1337,
+          "host_port": 0
+        }
+      ],
+      "command": [
+        "node",
+        "app.js",
+        "--prod"
+      ]
+    },
+    {
+      "name": "db",
+      "image": "postgres",
+      "port_mappings": [
+        {
+          "protocol": "tcp",
+          "container_port": 5432,
+          "host_port": 0
+        }
+      ],
+      "environment": [
+        {
+          "name": "POSTGRES_PASSWORD",
+          "value": "PYOenY_0v8H_P-2L7NR0rQ"
+        }
+      ]
+    }
+  ],
+  "family": "normalfaultscodelift-sails-postgres"
+}
